@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aromarte | Cosmética Natural </title>
+    <link rel="stylesheet" href="estilos/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/031f70e06c.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+</head>
+<body onload= Init() productos>
+    <header>
+        <div class="header__logo">
+            <a href="index.html"><img src="img/logo.jpg" alt="Logo" class="header__logoImg"></a>
+        </div>
+        <div class="header__cart">
+            <a  onclick="OpenCart()" href="#"><i class="fas fa-shopping-cart cart-icon"></i></a>
+            <p id="cartCount" class="header__cartCountText">0 Productos</p>
+        </div>
+        <nav>
+            <ul class="nav__nav">
+                <li class="nav__listItem">
+                    <a href="#">Principal</a>
+                </li>
+                <li class="nav__listItem">
+                    <a href="#">Productos</a>
+                </li>
+                <li class="nav__listItem">
+                    <a href="#">¿Qué es Zero Waste?</a>
+                </li>
+                <li class="nav__listItem">
+                    <a href="#">¿Quiénes Somos?</a>
+                </li>
+                <li class="nav__listItem">
+                    <a href="#">Contacto</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section class="body__portada">
+        <img src="img/portada.jpg" alt="" class="body__portadaImg">
+    </section>
+    <section class="body__modal">
+        <div class="modal__container">
+            <i onclick="ModalClose()" class="fas fa-window-close modal__closeIcon"></i>
+            <p class="modal__title"> Productos en el carrito:</p>
+            <p class="carritoVacio-text">No hay productos en el carrito.</p>
+            <div id="encabezadoCarrito" class="modal__titleColumn">
+                <ul class="modal__descriptionColumn">
+                    <li class="encabezadoCarrito-text">Descripción:</li>
+                </ul>
+                <ul class="modal__priceColumn">
+                    <li class="encabezadoCarrito-text">Precio:</li>
+                </ul>
+                <ul class="modal__quantityColumn">
+                    <li class="encabezadoCarrito-text">Cantidad:</li>
+                </ul>
+                <ul class="modal__deleteColumn">
+                    <li class="encabezadoCarrito-text">Quitar:</li>
+                </ul>
+            </div>
+            <div class="modal__cuenta">
+            <p class="cuenta__total-text">Total: </p>
+            <p class="cuenta__total-value" id="cart-value">$ 0</p>
+        </div>
+        <div class='modal__cartClean'>
+            <a  href="#" onclick="CartClean()">Vaciar carrito</a>
+        </div>
+            
+            
+
+        </div>
+
+    </section>
+    <section class="shop__container">
+        <ul id="shop__list" class="shop__list">
+            
+        </ul>
+    </section>
+</body>
+</html>

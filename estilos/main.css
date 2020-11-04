@@ -1,0 +1,213 @@
+/* ------ Presets ------ */
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    color:#0e0e0e;
+}
+li{
+    list-style: none;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+}
+
+
+/*  ------ Header -----   */
+header .header__logoImg{
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 80px;
+} 
+header .header__cart{
+    position: absolute;
+    top: 10px;
+    right:20px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+header .header__cart .header__cartCountText{
+    font-size: 14px;
+    padding: 0 0px;
+    color:#0e0e0e;
+}
+header .header__cart .cart-icon{
+    padding:0 10px;
+    color:#0e0e0e;
+}
+nav{
+    top:0;
+    height: 80px;
+}
+nav .nav__nav{
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 35px;
+}
+nav .nav__nav .nav__listItem{
+    padding: 10px;
+    color:#0e0e0e;
+}
+
+/* -------- Principal -------- */
+
+
+.body__portadaImg{
+    width: 100%;
+    top: 80px;
+    
+}
+
+/* ------ Shop ------*/
+.shop__container{
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+.shop__list{
+    display: flex;
+    justify-content: space-around;
+
+    
+}
+.shop__listItem{
+    background-color: rgb(240, 224, 236);
+    padding:10px;
+    border-radius: 10px;
+    width:22vw;  
+}
+.shop__listImg{
+    width: 100%;  
+}
+.shop__productLabelContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 5px;
+    border-radius: 5px; 
+}
+.shop__productLabel{
+    display:flex;
+    color:#0e0e0e;
+    font-size:14px;
+}
+.shop__productLabel-title{
+    font-size:1.1em;
+    font-weight: bold;
+    padding-bottom:10px;
+    text-align: center;
+    color:#0e0e0e;
+    
+}
+.shop__productLabel-price{
+    color:#0e0e0e;
+    text-align:right;
+    padding-top: 20px;
+}
+.shop__container .shop__footer .shop__cartAdd{
+    margin:8px 0;
+    padding: 10px 20px;
+    background-color: #c5678d;
+    color:#ededed;
+    border-radius: 5px;
+    bottom: 5px;
+    left:5px;
+    transition: all 0.4s;
+}
+.shop__container .shop__footer .shop__cartAdd:hover{
+    background: pink;
+    transform: scale(1.1);
+    
+}
+.shop__container .shop__footer {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.shop__container .shop__footer .shop__quantityContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.shop__container .shop__footer .shop__quantityContainer .button-quantity{
+    display:flex;
+    padding: 2px 5px;
+    height: 30px;
+    width: 20px;
+    background: darkolivegreen;
+    text-align:center;
+}
+.shop__container .shop__footer .shop__quantityContainer .shop__quantity{
+    padding:2px 10px;
+    background: #ededed;
+}
+
+/* ----------- Modal ----------- */
+.body__modal{
+    visibility: hidden;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}
+.body__modal .modal__container{
+    position:fixed;
+    top: 20vh;
+    width: 60vw;
+    height: 60vh;
+    background-color: #ededed;
+    border: 2px solid #0e0e0e;
+    overflow: scroll;
+}
+.body__modal .modal__container .modal__title{
+    padding: 10px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.body__modal .modal__container .modal__titleColumn{
+    padding:10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.body__modal .modal__container .modal__titleColumn .encabezadoCarrito-text{
+    padding:5px;
+    font-weight: bold;
+}
+.body__modal .modal__container .listProduct{
+    padding:5px;
+}
+.body__modal .modal__container .carritoVacio-text{
+    display: none;
+    text-align:center;
+
+}
+.body__modal .modal__container .modal__cuenta{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+}
+.body__modal .modal__container .modal__cuenta .cuenta__total-text{
+    padding:10px;
+    font-weight: bold;
+}
+.body__modal .modal__container .modal__cuenta .cuenta__total-value{
+    padding:10px;
+}
+.body__modal .modal__container .modal__cartClean{
+    text-align: center;
+    padding: 50px;
+}
+.modal__closeIcon{
+    font-size:20px;
+    position: absolute;
+    right:5px;
+    padding:5px;
+}
+@media screen and (min-width: 768px){
+
+}
