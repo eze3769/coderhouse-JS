@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="estilos/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/031f70e06c.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/scripts.js" defer></script>
 </head>
-<body onload= Init() productos>
+<body onload= Init()>
     <header>
         <div class="header__logo">
             <a href="index.html"><img src="img/logo.jpg" alt="Logo" class="header__logoImg"></a>
         </div>
         <div class="header__cart">
-            <a  onclick="OpenCart()" href="#"><i class="fas fa-shopping-cart cart-icon"></i></a>
+            <a id="openCartButton" onclick="OpenCart()" href="#"><i class="fas fa-shopping-cart cart-icon"></i></a>
             <p id="cartCount" class="header__cartCountText">0 Productos</p>
         </div>
         <nav>
@@ -67,8 +68,9 @@
         <div class='modal__cartClean'>
             <a  href="#" onclick="CartClean()">Vaciar carrito</a>
         </div>
-            
-            
+        <div class="close__buttonContainer">
+            <a class="close__button" href="#" onclick="ModalClose()">Seguir comprando</a>
+        </div>
 
         </div>
 
