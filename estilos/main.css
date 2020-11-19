@@ -211,12 +211,12 @@ nav .nav__nav .nav__listItem{
     text-align: center;
     padding-top: 30px;
 }
-.body__modal .modal__container .close__buttonContainer{
+.body__modal .modal__container .modalFooter__buttonContainer{
     display:flex;
     justify-content: flex-end;
     align-content: flex-end;
 }
-.body__modal .modal__container .close__buttonContainer .close__button{
+.body__modal .modal__container .modalFooter__buttonContainer .modalFooter__button{
     display: inline-block;
     background-color: #c5678d;
     color: white;

@@ -4,6 +4,40 @@ function Init(){
     ProductsLoad();
     CartCount();
 }
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCAG6jZJoV_Uhb5L_wc4q4c7Ra3BYCq4yk",
+    authDomain: "aromarte-web.firebaseapp.com",
+    databaseURL: "https://aromarte-web.firebaseio.com",
+    projectId: "aromarte-web",
+    storageBucket: "aromarte-web.appspot.com",
+    messagingSenderId: "931826286770",
+    appId: "1:931826286770:web:8eaa68cc3f4d2a3507c9ab",
+    measurementId: "G-X84GP08LHW"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+var id = 1;
+var dataBase;
+var dbRef = firebase.database().ref("products");
+dbRef.once("value")
+  .then(function(snapshot) {
+    var dataBase = snapshot.val(); 
+    var keys = Object.keys(dataBase);
+    var keysLength = keys.length;
+    console.log(keys);
+    console.log(keysLength);
+    return snapshot
+    });
+   // for (var i=0; i < keysLength; i++){
+   //     console.log(keys[i]);
+   //     var key = keys[i];
+   //     var ref = firebase.database().ref("products/"+key);
+   //     console.log(data[key].name);
+   // }
 var baseDeDatos = [
     {
         id : 0,
@@ -30,6 +64,27 @@ var baseDeDatos = [
         precio: 380,
         imagen: 'img/products/vela-soja.jpg'
     }];
+
+function ProductsLoad(){
+    var dbRef = firebase.database().ref("products");
+    dbRef.once("value")
+        .then(function(snapshot) {
+    var dataBase = snapshot.val(); 
+
+    var keys = Object.keys(dataBase);
+    var key = keys[i]
+    var keysLength = keys.length;
+    
+    for(var i=0; i < keysLength; i++ ){
+        var id = keys[i];
+        var nombre = dataBase[id].name;
+        var descripcion = dataBase[id].description;
+        var precio = dataBase[id].price;
+        var imagen = dataBase[id].image;
+        ProductConstructor(id, nombre, descripcion, precio, imagen)
+    }
+}
+        )};
 
 function ProductConstructor(id, nombre, descripcion, precio, imagen){
     
@@ -64,7 +119,7 @@ function ProductConstructor(id, nombre, descripcion, precio, imagen){
     paragraphPrice.classList.add('shop__productLabel-price');
     paragraphPrice.innerText = '$ ' +precio;
     productFooter.classList.add('shop__footer');
-    linkToAdd.setAttribute('onclick','CartClick('+id+')' );
+    linkToAdd.setAttribute('onclick',"CartClick('"+id+"')" );
     cartIcon.classList.add('fas','fa-shopping-cart','cart-icon','shop__cartAdd');
     quantitySelector.classList.add('shop__quantityContainer');
     quantityReduce.classList.add('button-quantity');
@@ -95,24 +150,16 @@ function ProductConstructor(id, nombre, descripcion, precio, imagen){
     quantitySelector.appendChild(quantityIncrease);
 }
 
-function ProductsLoad(){
-    var cantidad = baseDeDatos.length;
-    for(var i=0; i < cantidad; i++ ){
-        var id = baseDeDatos[i].id;
-        var nombre = baseDeDatos[i].nombre;
-        var descripcion = baseDeDatos[i].descripcion;
-        var precio = baseDeDatos[i].precio;
-        var imagen = baseDeDatos[i].imagen;
-        ProductConstructor(id, nombre, descripcion, precio, imagen)
-    }
-}
-
-
 function CartClick(order){
+    var dbRef = firebase.database().ref("products");
+    dbRef.once("value")
+        .then(function(snapshot) {
+    var dataBase = snapshot.val(); 
+    var key = order;
     
-    var id = baseDeDatos[order].id;
-    var product = baseDeDatos[order].nombre;
-    var cost = baseDeDatos[order].precio;
+    var id = key;
+    var product = dataBase[key].name;
+    var cost = dataBase[key].price;
     var quantify = Number(document.getElementById('product-quantity__'+order).innerText);
     function CarritoDeCompras() {
         this.compra = [];
@@ -127,18 +174,14 @@ function CartClick(order){
             }
     
         }
+        function Compra(id, description, price, quantity){
+            this.id = id;
+            this.description = description;
+            this.price = price;
+            this.quantity = quantity;
         
-
-    function Compra(id, description, price, quantity){
-        this.id = id;
-        this.description = description;
-        this.price = price;
-        this.quantity = quantity;
-    
-    }
-    
-    var nuevaCompra = new Compra(id, product, cost, quantify);
-    console.log(nuevaCompra);
+        }
+        var nuevaCompra = new Compra(id, product, cost, quantify);
     ItemsCompare()
     function ItemsCompare(){
         var end = 0;
@@ -159,7 +202,6 @@ function CartClick(order){
                     }
                 }
             
-            console.log(end);
             if (end == 0 ){
                 var nuevoCarritoDeCompras = new CarritoDeCompras();
                 nuevoCarritoDeCompras.tomarDatosIniciales();
@@ -171,9 +213,11 @@ function CartClick(order){
                 nuevoCarritoDeCompras.agregarCompra(nuevaCompra);
         }
     }
-   
-    
     CartCount()
+    });
+
+    
+    
 }
 
 function CartCount(){
@@ -212,7 +256,10 @@ function OpenCart(){
     
     TotalCart();
     CartClear();
+    CartProductsCreator()
     $('.body__modal').fadeToggle(300);
+}
+function CartProductsCreator(){
     if (localStorage.getItem('carrito') !== null){
        
         document.querySelector('.carritoVacio-text').style.display='none';
@@ -294,11 +341,14 @@ function DeleteCartItem(position){
     deleteList.removeChild(deleteIconToDelete);
     CartCount();
     TotalCart();
-
+    CartClear();
+    CartProductsCreator();
 }
 function CartClean(){
     localStorage.removeItem('carrito');
-    location.reload();
+    CartClear();
+    CartCount();
+    TotalCart();
 }
 
 function QuantityButton(input,id){
