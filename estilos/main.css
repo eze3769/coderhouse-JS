@@ -18,6 +18,9 @@ body{
 
 
 /*  ------ Header -----   */
+header{
+    height: 80px;
+}
 header .header__logoImg{
     position: absolute;
     top: 0;
@@ -43,7 +46,7 @@ header .header__cart .cart-icon{
 }
 nav{
     top:0;
-    height: 80px;
+    
 }
 nav .nav__nav{
     display: flex;
@@ -55,7 +58,12 @@ nav .nav__nav .nav__listItem{
     padding: 10px;
     color:#0e0e0e;
 }
-
+.header__logOutButton{
+    position: absolute;
+    right:0px;
+    top:0px;
+    padding:5px;
+}
 /* -------- Principal -------- */
 
 
@@ -72,18 +80,20 @@ nav .nav__nav .nav__listItem{
 }
 .shop__list{
     display: flex;
-    justify-content: space-around;
-
-    
+    justify-content: space-around;   
 }
+
 .shop__listItem{
     background-color: rgb(240, 224, 236);
     padding:10px;
     border-radius: 10px;
-    width:22vw;  
+    width:20vw;  
 }
 .shop__listImg{
     width: 100%;  
+}
+.shop__listImg:hover{
+    cursor: pointer;
 }
 .shop__productLabelContainer{
     display: flex;
@@ -101,22 +111,24 @@ nav .nav__nav .nav__listItem{
     font-weight: bold;
     padding-bottom:10px;
     text-align: center;
-    color:#0e0e0e;
-    
+    color:#0e0e0e; 
+}
+.shop__productLabel-title:hover{
+    cursor:pointer;
 }
 .shop__productLabel-price{
     color:#0e0e0e;
     text-align:right;
     padding-top: 20px;
 }
-.shop__container .shop__footer button{
+.shop__footer button{
     border:none; 
 }
-.shop__container .shop__footer button:hover{
+.shop__footer button:hover{
     cursor: pointer; 
 }
 
-.shop__container .shop__footer .shop__cartAdd{
+.shop__footer .shop__cartAdd{
     padding: 10px 20px;
     background-color: #c5678d;
     color:#ededed;
@@ -126,22 +138,24 @@ nav .nav__nav .nav__listItem{
     transition: all 0.4s;
     
 }
-.shop__container .shop__footer .shop__cartAdd:hover{
+.shop__footer .shop__cartAdd:hover{
     background: pink;
     transform: scale(1.1);
+    color:black;
+
     
 }
-.shop__container .shop__footer {
+.shop__footer {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.shop__container .shop__footer .shop__quantityContainer{
+.shop__footer .shop__quantityContainer{
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.shop__container .shop__footer .shop__quantityContainer .button-quantity{
+.shop__footer .shop__quantityContainer .button-quantity{
     display:flex;
     padding: 2px 5px;
     height: 28px;
@@ -152,13 +166,14 @@ nav .nav__nav .nav__listItem{
     align-items: center;
     color:white;
 }
-.shop__container .shop__footer .shop__quantityContainer .shop__quantity{
+.shop__footer .shop__quantityContainer .shop__quantity{
     padding:2px 10px;
     background: #ededed;
 }
 
 /* ----------- Modal ----------- */
-.body__modal{
+
+.body__modal, .body__productModal{
     display:flex;
     justify-content: center;
     align-content: center;
@@ -233,6 +248,101 @@ nav .nav__nav .nav__listItem{
     right:5px;
     padding:5px;
 }
+
+/*----------- Products Manager---------*/
+.productManager__container{
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+}
+.productManager__container .form__productCharger{
+    display:flex;
+    flex-direction: column;
+    width: 60vw;
+    padding:40px;
+
+}
+.productManager__container .form__productCharger .productCharger__input{
+    width: 80%;
+    font-family: 'Roboto', sans-serif;
+}
+.productManager__container .form__productCharger .productCharger__label{
+    padding-top: 10px;
+}
+.productManager__container .form__productCharger .productCharger__text{
+    width: 80%;
+    font-family: 'Roboto', sans-serif;
+}
+.productManager__container .productViewer{
+    display: flex;
+    flex-direction: column;
+    justify-self:  center;
+}
+.productCharger__buttonContainer{
+    padding:20px;
+    display:flex;
+    justify-content: space-around;
+}
+.productCharger__buttonContainer .productCharger__button{
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background:#c5678d;
+    color: white;
+    transition: all 0.4s;
+
+}
+.productCharger__buttonContainer .productCharger__button:hover{
+    background: #ededed;
+    transform: scale(1.1);
+    color:black;
+}
+.productViewer .preview__container{
+    padding:20px;
+}
+
+/*------------- Checkout --------------*/
+
+.checkout__container{
+    display:flex;
+    flex-direction: column;
+    
+}
+.checkout__container .checkout__user{
+    width:60vw;
+}
+.checkout__container .checkout__userForm{
+    display:flex;
+    flex-direction: column;
+    padding: 40px;
+}
+.checkout-products{
+    display:flex;
+    flex-direction: row;
+    
+}
+.checkout-products .checkout__productsList{
+    display:flex;
+    flex-direction: column;
+    padding:20px;
+}
+
+
+/*----------- Admin site ------------*/
+.admin__options{
+    padding:40px;
+}
+.admin__taskList .admin__taskItem{
+    padding:20px;
+}
+.admin__taskList .admin__taskItem .linkButton{
+    padding:10px 20px;
+    background-color: darkgrey;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 @media screen and (min-width: 768px){
 
 }

@@ -1,6 +1,7 @@
 
 function Init(){
     $('.body__modal').hide();
+    $('.body__productModal').hide();
     ProductsLoad();
     CartCount();
 }
@@ -32,38 +33,33 @@ dbRef.once("value")
     console.log(keysLength);
     return snapshot
     });
-   // for (var i=0; i < keysLength; i++){
-   //     console.log(keys[i]);
-   //     var key = keys[i];
-   //     var ref = firebase.database().ref("products/"+key);
-   //     console.log(data[key].name);
-   // }
-var baseDeDatos = [
-    {
-        id : 0,
-        nombre: 'Shampoo de Pelo Graso',
-        descripcion: '-Aceite de Jojoba.\n- Té verde.\n- Arcilla verde.\n- Aceites esenciales de limón y menta.',
-        precio: 360,
-        imagen: 'img/products/shampoo-graso.jpg'
-    },{
-        id : 1,
-        nombre: 'Shampoo de Pelo Normal',
-        descripcion: '- Aceite de ricino.\n- Manteca de karité.\n- Arcilla blanca.\n- Aceites esenciales de jazmín y naranja.',
-        precio: 360,
-        imagen: 'img/products/shampoo-normal.jpg'
-    },{
-        id :2,
-        nombre: 'Shampoo de Pelo Seco',
-        descripcion: '- Aceite de almendras dulces.\n- Manteca de karité.\n- Avena.\n- Arcilla roja.\n- Aceites esenciales de lavanda y tea tree.',
-        precio: 360,
-        imagen: 'img/products/shampoo-seco.jpg'
-    },{
-        id : 3,
-        nombre: 'Vela de soja',
-        descripcion: '- Duran más que las de parafina, y su olor se desprende más rápido.\n- Son amigables con el medio ambiente.\n- Dejan un aroma riquísimo!\n- Aceites esenciales de limón y menta.',
-        precio: 380,
-        imagen: 'img/products/vela-soja.jpg'
-    }];
+
+//var baseDeDatos = [
+//    {
+//        id : 0,
+//        nombre: 'Shampoo de Pelo Graso',
+//        descripcion: '-Aceite de Jojoba.\n- Té verde.\n- Arcilla verde.\n- Aceites esenciales de limón y menta.',
+//        precio: 360,
+//        imagen: 'img/products/shampoo-graso.jpg'
+//    },{
+//        id : 1,
+//        nombre: 'Shampoo de Pelo Normal',
+//        descripcion: '- Aceite de ricino.\n- Manteca de karité.\n- Arcilla blanca.\n- Aceites esenciales de jazmín y naranja.',
+//        precio: 360,
+//        imagen: 'img/products/shampoo-normal.jpg'
+//    },{
+//        id :2,
+//        nombre: 'Shampoo de Pelo Seco',
+//        descripcion: '- Aceite de almendras dulces.\n- Manteca de karité.\n- Avena.\n- Arcilla roja.\n- Aceites esenciales de lavanda y tea tree.',
+//        precio: 360,
+//        imagen: 'img/products/shampoo-seco.jpg'
+//    },{
+//        id : 3,
+//        nombre: 'Vela de soja',
+//        descripcion: '- Duran más que las de parafina, y su olor se desprende más rápido.\n- Son amigables con el medio ambiente.\n- Dejan un aroma riquísimo!\n- Aceites esenciales de limón y menta.',
+//        precio: 380,
+//        imagen: 'img/products/vela-soja.jpg'
+//    }];
 
 function ProductsLoad(){
     var dbRef = firebase.database().ref("products");
@@ -107,9 +103,11 @@ function ProductConstructor(id, nombre, descripcion, precio, imagen){
     itemList.classList.add('shop__listItem');
     paragraphTitle.classList.add('shop__productLabel-title');
     paragraphTitle.innerText = nombre;
+    paragraphTitle.setAttribute('onclick',"ProductClick('"+id+"')" );
     image.classList.add('shop__listImg');
     image.alt = nombre;
     image.src = imagen;
+    image.setAttribute('onclick',"ProductClick('"+id+"')" );
     divCreator.classList.add('shop__productLabelContainer');
     paragraphContentText.classList.add('shop__productLabel');
     paragraphContentText.style.fontWeight = 'bold';
@@ -125,11 +123,11 @@ function ProductConstructor(id, nombre, descripcion, precio, imagen){
     quantityReduce.classList.add('button-quantity');
     quantityReduce.innerText = '-';
     quantityReduce.href = '#product-quantity';
-    quantityReduce.setAttribute('onclick','QuantityButton("-",'+id+')' );
+    quantityReduce.setAttribute('onclick','QuantityButton("-","'+id+'")' );
     quantityIncrease.classList.add('button-quantity');
     quantityIncrease.innerText = '+';
     quantityIncrease.href = '#product-quantity';
-    quantityIncrease.setAttribute('onclick','QuantityButton("+",'+id+')' );
+    quantityIncrease.setAttribute('onclick','QuantityButton("+","'+id+'")' );
     quantityText.classList.add('shop__quantity');
     quantityText.innerText= 1;
     quantityText.id ='product-quantity__'+id;
@@ -349,6 +347,7 @@ function CartClean(){
     CartClear();
     CartCount();
     TotalCart();
+    document.getElementById('cart-value').innerText="$ "+ 0;
 }
 
 function QuantityButton(input,id){
@@ -365,6 +364,14 @@ function QuantityButton(input,id){
     }
 }
 
-function ModalClose(){
-    $('.body__modal').fadeOut(200);
+function ModalClose(select){
+    if (select=='cart'){
+        $('.body__modal').fadeOut(200);
+    }
+    if (select=='prod'){
+        $('.body__productModal').fadeOut(200);
+    }
 };
+function ProductClick(id){
+    $('.body__productModal').show();
+}

@@ -40,3 +40,100 @@ function SaveProduct(name,description,price,image){
         });
     }
 }
+
+  //-----------------------------
+  initApp = function() {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        $(".noLog").hide();
+        $(".onLog").show();
+        $(".header__logOutButton").show();
+      } else {
+        // User is signed out.
+        $(".noLog").show();
+        $(".onLog").hide();
+        $(".header__logOutButton").hide();
+      }
+    }, function(error) {
+      console.log(error);
+    });
+  };
+
+  window.addEventListener('load', function() {
+    initApp()
+  });
+ 
+  var exist = false;
+  function ProductPreview(){
+    if (exist == true){
+      $('.shop__listItem').remove(); 
+    }
+    
+    var nombre = document.getElementById("input-name").value;
+    var descripcion = document.getElementById("text-description").value;
+    var precio = document.getElementById("input-price").value;
+    var imagen = document.getElementById("input-image").value;
+
+    var place = document.querySelector(".shop__list");
+    var itemList = document.createElement('li');
+    var paragraphTitle = document.createElement('p');
+    var image = document.createElement('img');
+    var divCreator = document.createElement('div');
+    var paragraphContentText = document.createElement('p');
+    var paragraphDescription = document.createElement('p');
+    var paragraphPrice = document.createElement('p');
+    var productFooter = document.createElement('div')
+    var linkToAdd = document.createElement('button');
+    var cartIcon = document.createElement('i');
+    var quantitySelector = document.createElement('div');
+    var quantityReduce = document.createElement('button');
+    var quantityText = document.createElement('p');
+    var quantityIncrease = document.createElement('button');
+
+    itemList.classList.add('shop__listItem');
+    paragraphTitle.classList.add('shop__productLabel-title');
+    paragraphTitle.innerText = nombre;
+    image.classList.add('shop__listImg');
+    image.alt = nombre;
+    image.src = imagen;
+    divCreator.classList.add('shop__productLabelContainer');
+    paragraphContentText.classList.add('shop__productLabel');
+    paragraphContentText.style.fontWeight = 'bold';
+    paragraphContentText.innerText = 'Contenido:';
+    paragraphDescription.classList.add('shop__productLabel');
+    paragraphDescription.innerText = descripcion;
+    paragraphPrice.classList.add('shop__productLabel-price');
+    paragraphPrice.innerText = '$ ' +precio;
+    productFooter.classList.add('shop__footer');
+    cartIcon.classList.add('fas','fa-shopping-cart','cart-icon','shop__cartAdd');
+    quantitySelector.classList.add('shop__quantityContainer');
+    quantityReduce.classList.add('button-quantity');
+    quantityReduce.innerText = '-';
+    quantityReduce.href = '#product-quantity';
+    quantityIncrease.classList.add('button-quantity');
+    quantityIncrease.innerText = '+';
+    quantityIncrease.href = '#product-quantity';
+    quantityText.classList.add('shop__quantity');
+    quantityText.innerText= 1;
+
+    place.appendChild(itemList);
+    itemList.appendChild(paragraphTitle);
+    itemList.appendChild(image);
+    itemList.appendChild(divCreator);
+    divCreator.appendChild(paragraphContentText);
+    divCreator.appendChild(paragraphDescription);
+    divCreator.appendChild(paragraphPrice);
+    itemList.appendChild(productFooter);
+    productFooter.appendChild(linkToAdd);
+    linkToAdd.appendChild(cartIcon);
+    productFooter.appendChild(quantitySelector);
+    quantitySelector.appendChild(quantityReduce);
+    quantitySelector.appendChild(quantityText);
+    quantitySelector.appendChild(quantityIncrease);
+
+    exist = true;
+}
+function LogOut() {
+  firebase.auth().signOut()
+}
