@@ -86,30 +86,31 @@
 
     </section>
     <section class="body__productModal">
-        <div class="modal__container">
+        <div class="productModal__container">
+        <div class="modal__headerContainer">
             <i onclick="ModalClose('prod')" class="fas fa-window-close modal__closeIcon"></i>
-            <p class="modal__title"> Productos en el carrito:</p>
-            <p class="carritoVacio-text">No hay productos en el carrito.</p>
-            <div id="encabezadoCarrito" class="modal__titleColumn">
-                <ul class="modal__descriptionColumn">
-                    <li class="encabezadoCarrito-text">Descripción:</li>
-                </ul>
-                <ul class="modal__priceColumn">
-                    <li class="encabezadoCarrito-text">Precio:</li>
-                </ul>
-                <ul class="modal__quantityColumn">
-                    <li class="encabezadoCarrito-text">Cantidad:</li>
-                </ul>
-                <ul class="modal__deleteColumn">
-                    <li class="encabezadoCarrito-text">Quitar:</li>
-                </ul>
-            </div>
-            <div class="modal__cuenta">
-            <p class="cuenta__total-text">Total: </p>
-            <p class="cuenta__total-value" id="cart-value">$ 0</p>
+            <h3 class="productModal__title">Producto</h3>
         </div>
-        <div class='modal__cartClean'>
-            <a  href="#" onclick="CartClean()">Vaciar carrito</a>
+            <div class="productModal__grid">
+            <div class="productModal__gridImg">
+                <img class="gridImg__img" src="" alt="">
+            </div>
+            <div class="productModal__gridDescription">
+                <p>Descripción:</p>
+                <p class="gridDescription__text">Descripción</p>
+            </div>
+            <div class="productModal__gridPrice">
+                <p class="gridPrice__price">precio</p>
+            </div>
+            <div class="productModal__gridCart">
+                <a href="">Agregar al carrito</a>
+                <a href="sections/cart-checkout.html">ir a pagar</a>
+                <div>
+                    <button>+</button>
+                    <p>1</p>
+                    <button>+</button>
+                </div>
+            </div>
         </div>
         <div class="modalFooter__buttonContainer">
             <a class="modalFooter__button" href="#" onclick="ModalClose('prod')">Seguir comprando</a>
@@ -117,7 +118,7 @@
         </div>
 
         </div>
-
+    </div>
     </section>
     <section class="shop__container">
         <ul id="shop__list" class="shop__list">

@@ -171,13 +171,14 @@ nav .nav__nav .nav__listItem{
     background: #ededed;
 }
 
-/* ----------- Modal ----------- */
+/* ----------- Modals ----------- */
 
-.body__modal, .body__productModal{
+.body__modal{
     display:flex;
     justify-content: center;
     align-content: center;
 }
+
 .body__modal .modal__container{
     position:fixed;
     top: 20vh;
@@ -247,6 +248,54 @@ nav .nav__nav .nav__listItem{
     position: absolute;
     right:5px;
     padding:5px;
+}
+.body__productModal{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}
+.productModal__container{
+    padding:20px;
+    position:fixed;
+    top: 20vh;
+    width: 60vw;
+    height: 70vh;
+    background-color: #ededed;
+    border: 2px solid #0e0e0e;
+    overflow: hidden;
+}
+ .productModal__grid{
+    display:grid;
+    grid-template-columns: auto 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: 
+    "img description description"
+    "price cart cart";
+
+}
+.productModal__gridImg{
+    padding:20px;
+    display: flex;
+    grid-area: img;
+}
+.productModal__gridImg .gridImg__img{
+    width: 25vw;
+}
+
+.productModal__gridDescription{
+    padding:20px;
+    display: flex;
+    grid-area: description;
+}
+.productModal__gridPrice{
+    padding:20px;
+    display: flex;
+    grid-area: price;
+}
+.productModal__gridCart{
+    padding:20px;
+    display: flex;
+    grid-area: cart;
 }
 
 /*----------- Products Manager---------*/

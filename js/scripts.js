@@ -89,8 +89,6 @@ function ProductConstructor(id, nombre, descripcion, precio, imagen){
     var paragraphTitle = document.createElement('p');
     var image = document.createElement('img');
     var divCreator = document.createElement('div');
-    var paragraphContentText = document.createElement('p');
-    var paragraphDescription = document.createElement('p');
     var paragraphPrice = document.createElement('p');
     var productFooter = document.createElement('div')
     var linkToAdd = document.createElement('button');
@@ -109,11 +107,6 @@ function ProductConstructor(id, nombre, descripcion, precio, imagen){
     image.src = imagen;
     image.setAttribute('onclick',"ProductClick('"+id+"')" );
     divCreator.classList.add('shop__productLabelContainer');
-    paragraphContentText.classList.add('shop__productLabel');
-    paragraphContentText.style.fontWeight = 'bold';
-    paragraphContentText.innerText = 'Contenido:';
-    paragraphDescription.classList.add('shop__productLabel');
-    paragraphDescription.innerText = descripcion;
     paragraphPrice.classList.add('shop__productLabel-price');
     paragraphPrice.innerText = '$ ' +precio;
     productFooter.classList.add('shop__footer');
@@ -136,8 +129,6 @@ function ProductConstructor(id, nombre, descripcion, precio, imagen){
     itemList.appendChild(paragraphTitle);
     itemList.appendChild(image);
     itemList.appendChild(divCreator);
-    divCreator.appendChild(paragraphContentText);
-    divCreator.appendChild(paragraphDescription);
     divCreator.appendChild(paragraphPrice);
     itemList.appendChild(productFooter);
     productFooter.appendChild(linkToAdd);
@@ -374,4 +365,20 @@ function ModalClose(select){
 };
 function ProductClick(id){
     $('.body__productModal').show();
-}
+
+    var dbRef = firebase.database().ref("products");
+    dbRef.once("value")
+        .then(function(snapshot) {
+    var dataBase = snapshot.val(); 
+
+    var nombre = dataBase[id].name;
+    var descripcion = dataBase[id].description;
+    var precio = dataBase[id].price;
+    var imagen = dataBase[id].image;
+
+    $(".productModal__title").text(nombre);
+    $(".gridImg__img").attr("src", imagen);
+    document.querySelector(".gridDescription__text").innerText = descripcion ; //jquery no me respeta los br
+    $(".gridPrice__price").text("$ "+precio);
+        })
+};
