@@ -2,8 +2,9 @@
 function Init(){
     $('.body__modal').hide();
     $('.body__productModal').hide();
-    ProductsLoad();
     CartCount();
+    LoadFilters();
+    CheckboxSelect('all');
 }
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -21,68 +22,46 @@ function Init(){
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
-var id = 1;
-var dataBase;
-var dbRef = firebase.database().ref("products");
-dbRef.once("value")
-  .then(function(snapshot) {
-    var dataBase = snapshot.val(); 
-    var keys = Object.keys(dataBase);
-    var keysLength = keys.length;
-    console.log(keys);
-    console.log(keysLength);
-    return snapshot
-    });
 
-//var baseDeDatos = [
-//    {
-//        id : 0,
-//        nombre: 'Shampoo de Pelo Graso',
-//        descripcion: '-Aceite de Jojoba.\n- Té verde.\n- Arcilla verde.\n- Aceites esenciales de limón y menta.',
-//        precio: 360,
-//        imagen: 'img/products/shampoo-graso.jpg'
-//    },{
-//        id : 1,
-//        nombre: 'Shampoo de Pelo Normal',
-//        descripcion: '- Aceite de ricino.\n- Manteca de karité.\n- Arcilla blanca.\n- Aceites esenciales de jazmín y naranja.',
-//        precio: 360,
-//        imagen: 'img/products/shampoo-normal.jpg'
-//    },{
-//        id :2,
-//        nombre: 'Shampoo de Pelo Seco',
-//        descripcion: '- Aceite de almendras dulces.\n- Manteca de karité.\n- Avena.\n- Arcilla roja.\n- Aceites esenciales de lavanda y tea tree.',
-//        precio: 360,
-//        imagen: 'img/products/shampoo-seco.jpg'
-//    },{
-//        id : 3,
-//        nombre: 'Vela de soja',
-//        descripcion: '- Duran más que las de parafina, y su olor se desprende más rápido.\n- Son amigables con el medio ambiente.\n- Dejan un aroma riquísimo!\n- Aceites esenciales de limón y menta.',
-//        precio: 380,
-//        imagen: 'img/products/vela-soja.jpg'
-//    }];
-
-function ProductsLoad(){
+function ProductsLoad(category){
     var dbRef = firebase.database().ref("products");
     dbRef.once("value")
         .then(function(snapshot) {
     var dataBase = snapshot.val(); 
-
-    var keys = Object.keys(dataBase);
-    var key = keys[i]
-    var keysLength = keys.length;
-    
-    for(var i=0; i < keysLength; i++ ){
-        var id = keys[i];
-        var nombre = dataBase[id].name;
-        var descripcion = dataBase[id].description;
-        var precio = dataBase[id].price;
-        var imagen = dataBase[id].image;
-        ProductConstructor(id, nombre, descripcion, precio, imagen)
-    }
+    if(dataBase ==null || dataBase == undefined){
+        $(".shop__noElements").show();
+    }else{
+        $(".shop__noElements").hide();
+        var keys = Object.keys(dataBase);
+        var keysLength = keys.length; 
+            if(category == "all"){
+                for(var i=0; i < keysLength; i++ ){
+                var id = keys[i];   
+                var nombre = dataBase[id].name;
+                var precio = dataBase[id].price;
+                var imageURL = dataBase[id].imageURL;
+                ProductConstructor(id, nombre, precio, imageURL)
+                }
+            }else{
+                $(".shop__noElements").show();
+                for(var i=0; i < keysLength; i++ ){
+                    var id = keys[i]; 
+                    var itemCategory = dataBase[id].category;
+                    if(category == itemCategory){
+                        $(".shop__noElements").hide();
+                        var nombre = dataBase[id].name;
+                        var precio = dataBase[id].price;
+                        var imageURL = dataBase[id].imageURL;
+                        ProductConstructor(id, nombre, precio, imageURL)
+    }}
+            }
 }
-        )};
+    }
+    
+)
+};
 
-function ProductConstructor(id, nombre, descripcion, precio, imagen){
+function ProductConstructor(id, nombre, precio, imageURL){
     
     var place = document.getElementById('shop__list');
     var itemList = document.createElement('li');
@@ -90,6 +69,7 @@ function ProductConstructor(id, nombre, descripcion, precio, imagen){
     var image = document.createElement('img');
     var divCreator = document.createElement('div');
     var paragraphPrice = document.createElement('p');
+    var paragraphCheck = document.createElement('i')
     var productFooter = document.createElement('div')
     var linkToAdd = document.createElement('button');
     var cartIcon = document.createElement('i');
@@ -104,42 +84,47 @@ function ProductConstructor(id, nombre, descripcion, precio, imagen){
     paragraphTitle.setAttribute('onclick',"ProductClick('"+id+"')" );
     image.classList.add('shop__listImg');
     image.alt = nombre;
-    image.src = imagen;
+    image.src = imageURL;
     image.setAttribute('onclick',"ProductClick('"+id+"')" );
     divCreator.classList.add('shop__productLabelContainer');
+    paragraphCheck.className = "fas fa-check-circle shop__cartAdd";
+    paragraphCheck.id = "check-"+id;
     paragraphPrice.classList.add('shop__productLabel-price');
-    paragraphPrice.innerText = '$ ' +precio;
+    paragraphPrice.innerText = '$' +precio;
     productFooter.classList.add('shop__footer');
-    linkToAdd.setAttribute('onclick',"CartClick('"+id+"')" );
+    linkToAdd.setAttribute('onclick',"CartClick('"+id+"','shop')" );
     cartIcon.classList.add('fas','fa-shopping-cart','cart-icon','shop__cartAdd');
+    cartIcon.id= 'icon-'+id;
     quantitySelector.classList.add('shop__quantityContainer');
     quantityReduce.classList.add('button-quantity');
     quantityReduce.innerText = '-';
     quantityReduce.href = '#product-quantity';
-    quantityReduce.setAttribute('onclick','QuantityButton("-","'+id+'")' );
+    quantityReduce.setAttribute('onclick','QuantityButton("-","'+id+'","shop")' );
     quantityIncrease.classList.add('button-quantity');
     quantityIncrease.innerText = '+';
     quantityIncrease.href = '#product-quantity';
-    quantityIncrease.setAttribute('onclick','QuantityButton("+","'+id+'")' );
+    quantityIncrease.setAttribute('onclick','QuantityButton("+","'+id+'","shop")' );
     quantityText.classList.add('shop__quantity');
     quantityText.innerText= 1;
     quantityText.id ='product-quantity__'+id;
 
     place.appendChild(itemList);
-    itemList.appendChild(paragraphTitle);
     itemList.appendChild(image);
+    itemList.appendChild(paragraphTitle);
     itemList.appendChild(divCreator);
     divCreator.appendChild(paragraphPrice);
     itemList.appendChild(productFooter);
     productFooter.appendChild(linkToAdd);
     linkToAdd.appendChild(cartIcon);
+    linkToAdd.appendChild(paragraphCheck);
     productFooter.appendChild(quantitySelector);
     quantitySelector.appendChild(quantityReduce);
     quantitySelector.appendChild(quantityText);
     quantitySelector.appendChild(quantityIncrease);
+    $("#check-"+id).hide();
 }
 
-function CartClick(order){
+function CartClick(order,place){
     var dbRef = firebase.database().ref("products");
     dbRef.once("value")
         .then(function(snapshot) {
@@ -149,7 +134,23 @@ function CartClick(order){
     var id = key;
     var product = dataBase[key].name;
     var cost = dataBase[key].price;
-    var quantify = Number(document.getElementById('product-quantity__'+order).innerText);
+    var image = dataBase[key].imageURL
+    var quantify;
+    if(place == "modal"){
+        quantify = Number(document.getElementById('product-quantity-modal__'+order).innerText);
+        $("#gridCart__button-visible").fadeOut(500);
+        $("#gridCart__button-hidden").delay(500).fadeIn(500);
+        $("#gridCart__button-hidden").delay(1000).fadeOut(500);
+        $("#gridCart__button-visible").delay(2000).fadeIn(500);
+    }
+    if(place == "shop"){
+        $("#icon-"+order).fadeOut(500)
+        $("#check-"+order).delay(500).fadeIn(500);
+        $("#check-"+order).delay(2000).fadeOut(500);
+        $("#icon-"+order).delay(3000).fadeIn(300);
+        quantify = Number(document.getElementById('product-quantity__'+order).innerText);
+    }
+    
     function CarritoDeCompras() {
         this.compra = [];
         this.agregarCompra = function(compra){
@@ -163,14 +164,15 @@ function CartClick(order){
             }
     
         }
-        function Compra(id, description, price, quantity){
+        function Compra(id, product, price, quantity, image){
             this.id = id;
-            this.description = description;
+            this.product = product;
             this.price = price;
             this.quantity = quantity;
+            this.image = image;
         
         }
-        var nuevaCompra = new Compra(id, product, cost, quantify);
+        var nuevaCompra = new Compra(id, product, cost, quantify, image);
     ItemsCompare()
     function ItemsCompare(){
         var end = 0;
@@ -250,20 +252,23 @@ function OpenCart(){
 }
 function CartProductsCreator(){
     if (localStorage.getItem('carrito') !== null){
-       
         document.querySelector('.carritoVacio-text').style.display='none';
         document.getElementById('encabezadoCarrito').style.display='flex';
         
 
         for(var i=0 ; i < productos ; i++){
-            var description = JSON.parse(localStorage.getItem('carrito'))[i].description;
+            var description = JSON.parse(localStorage.getItem('carrito'))[i].product;
             var price = JSON.parse(localStorage.getItem('carrito'))[i].price;
             var quantity = JSON.parse(localStorage.getItem('carrito'))[i].quantity;
+            var image = JSON.parse(localStorage.getItem('carrito'))[i].image;
             
+            var imageList = document.querySelector('.modal__imageColumn');
             var descriptionList = document.querySelector('.modal__descriptionColumn');
             var priceList = document.querySelector('.modal__priceColumn');
             var quantityList = document.querySelector('.modal__quantityColumn');
             var deleteList = document.querySelector('.modal__deleteColumn');
+            var itemImageList = document.createElement('li');
+            var itemImage = document.createElement('img');
             var itemDescripcion = document.createElement('li');
             var itemPrecio = document.createElement('li');
             var itemCantidad = document.createElement('li');
@@ -275,6 +280,9 @@ function CartProductsCreator(){
             itemPrecio.textContent = '$ '+price*quantity;
             itemCantidad.textContent = quantity;
 
+            itemImage.className = 'imgProduct';
+            itemImageList.id = 'imageProduct('+i+')';
+            itemImage.setAttribute('src',image)
             itemDescripcion.className = 'listProduct';
             itemDescripcion.id = 'descriptionProduct('+i+')';
             itemPrecio.className = 'listProduct';
@@ -285,11 +293,13 @@ function CartProductsCreator(){
             itemDelete.id = 'deleteProduct('+i+')';
             itemDelete.classList.add('cart-del');
             deleteIcon.className = "far fa-trash-alt";
+            deleteIcon.classList.add('del-button');
             deleteIcon.setAttribute('onclick','DeleteCartItem('+i+')');
 
 
             itemDelete.appendChild(deleteIcon);
-
+            imageList.appendChild(itemImageList);
+            itemImageList.appendChild(itemImage);
             descriptionList.appendChild(itemDescripcion);
             priceList.appendChild(itemPrecio);
             quantityList.appendChild(itemCantidad);
@@ -301,10 +311,12 @@ function CartProductsCreator(){
     }else{
         document.querySelector('.carritoVacio-text').style.display='block';
         document.getElementById('encabezadoCarrito').style.display='none';
+        $("#goToCheckout-button").hide();
     }
     
 }
 function CartClear(){
+    $('.modal__imageColumn li:not(:first)').remove(); 
     $('.modal__descriptionColumn li:not(:first)').remove(); 
     $('.modal__priceColumn li:not(:first)').remove(); 
     $('.modal__quantityColumn li:not(:first)').remove(); 
@@ -341,18 +353,33 @@ function CartClean(){
     document.getElementById('cart-value').innerText="$ "+ 0;
 }
 
-function QuantityButton(input,id){
-    var valor = Number(document.getElementById('product-quantity__'+id).innerText);
+function QuantityButton(input,id,place){
+    if(place=="shop"){
+        var valor = Number(document.getElementById('product-quantity__'+id).innerText);
+        if (input == "+"){
+            document.getElementById('product-quantity__'+id).innerText = valor+1;
+        }else{
+            if (valor == 1){
+
+            }else{
+                document.getElementById('product-quantity__'+id).innerText = valor-1;
+            }
+
+        }
+    }
+    if(place=="modal"){
+    var valor = Number(document.getElementById('product-quantity-modal__'+id).innerText);
     if (input == "+"){
-        document.getElementById('product-quantity__'+id).innerText = valor+1;
+        document.getElementById('product-quantity-modal__'+id).innerText = valor+1;
     }else{
         if (valor == 1){
 
         }else{
-            document.getElementById('product-quantity__'+id).innerText = valor-1;
+            document.getElementById('product-quantity-modal__'+id).innerText = valor-1;
         }
 
     }
+}
 }
 
 function ModalClose(select){
@@ -364,6 +391,7 @@ function ModalClose(select){
     }
 };
 function ProductClick(id){
+    $("#gridCart__button-hidden").hide();
     $('.body__productModal').show();
 
     var dbRef = firebase.database().ref("products");
@@ -374,11 +402,66 @@ function ProductClick(id){
     var nombre = dataBase[id].name;
     var descripcion = dataBase[id].description;
     var precio = dataBase[id].price;
-    var imagen = dataBase[id].image;
-
+    var imageURL = dataBase[id].imageURL;
+    
     $(".productModal__title").text(nombre);
-    $(".gridImg__img").attr("src", imagen);
+    $(".gridImg__img").attr("src", imageURL);
+    $(".gridCart__quantity-text").attr("id",'product-quantity-modal__'+id);
+    $(".gridCart__button").attr('id',"buttonCheck" );
+    $(".gridCart__button").attr('onclick',"CartClick('"+id+"','modal')" );
+    $("#Product-buttonUp").attr("onclick", 'QuantityButton("+","'+id+'","modal")');
+    $("#Product-buttonDown").attr("onclick", 'QuantityButton("-","'+id+'","modal")');
     document.querySelector(".gridDescription__text").innerText = descripcion ; //jquery no me respeta los br
     $(".gridPrice__price").text("$ "+precio);
+        
+    
         })
 };
+function LoadFilters(){
+    var dbRef = firebase.database().ref("categories");
+    dbRef.once("value")
+        .then(function(snapshot) {
+      var dataBase = snapshot.val(); 
+      if (dataBase == null || dataBase == undefined){
+      }else{
+      var keys = Object.keys(dataBase);
+      var keysLength = keys.length;
+      
+      for(var i=0; i < keysLength; i++ ){
+          
+        var id = keys[i];
+        var category = dataBase[id];
+        var place = document.querySelector(".shop__filter");
+        var container = document.createElement("div");
+        var input = document.createElement("input");
+        var label = document.createElement("label");
+
+        input.type = "checkbox";
+        input.value = category;
+        input.id = "filter-"+category;
+        input.className = "input__filter"
+        input.setAttribute('onchange','CheckboxSelect("'+category+'")');
+        label.innerText = " "+category;
+        label.for = "filter-"+category;
+
+        place.appendChild(container);
+        container.appendChild(input);
+        container.appendChild(label);
+      }
+    }
+        })
+};
+
+function CheckboxSelect(id){
+        var count = document.getElementsByClassName("input__filter").length;
+        for (var i=0; i < count; i++){
+            if (document.getElementsByClassName("input__filter")[i].checked == true){
+                document.getElementsByClassName("input__filter")[i].checked = false;
+            }
+        }
+        
+        document.getElementById("filter-"+id).checked = true;
+        $('#shop__list li').remove();  
+        ProductsLoad(id);
+    };
+

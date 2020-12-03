@@ -18,39 +18,106 @@
         </div>
     </header>
     <h1>Finalice su compra</h1>
-    <div class="checkout__container">
+    <section class="section__checkout">
+    <div class="checkout__container">  
         <div class="checkout__user">
+            <h3>Ingrese sus Datos:</h3>
         <form class="checkout__userForm">
-            <label for="">Apellido</label>
-            <input type="text">
-            <label for="">Nombre</label>
-            <input type="text">
-            <label for="">Teléfono</label>
-            <input type="text">
-            <label for="">Domicilio</label>
-            <input type="text">
+            <label for="customer__name">Apellido</label>
+            <input type="text" id="customer__lastName">
+            <label for="customer__name">Nombre</label>
+            <input type="text" id="customer__name">
+            <label for="customer__email">Correo Electrónico</label>
+            <input type="email" id="customer__email">
+            <label for="customer__phone">Teléfono</label>
+            <input type="tel" id="customer__phone">
+            <label for="customer__address">Dirección</label>
+            <input type="text" id="customer__address">
+            <label for="customer__addressCity">Ciudad</label>
+            <input type="text" id="customer__addressCity">
+            <label for="customer__addressZip">Código Postal</label>
+            <input type="text" id="customer__addressZip">
+            <label for="customer__addressState">Provincia</label>
+            <input type="text" id="customer__addressState">
         </form>
-    </div>
+        </div>
         <div class="checkout-products">
-                <ul class="checkout__productsList checkout__listDescription">
+            <h3>Productos en el carrito:</h3>
+            <div class="checkout-productsLists">
+            <ul class="checkout__productsList" id="checkout__listImage">
+                <li class="checkout__listItem">&nbsp;</li>
+            </ul>
+            <ul class="checkout__productsList" id="checkout__listDescription">
                     <li class="checkout__listItem">Descripción</li>
                 </ul>
-                <ul class="checkout__productsList checkout__listPrice">
+            <ul class="checkout__productsList" id="checkout__listPrice">
                     <li class="checkout__listItem">Precio</li>
                 </ul>
-                <ul class="checkout__productsList checkout__listQuantity">
-                    <li class="checkout__listItem">Cantidad</li>
+            <ul class="checkout__productsList" id="checkout__listQuantity">
+                    <li class="checkout__listItem">Cant</li>
+                </ul>
+                <ul class="checkout__productsList" id="checkout__listTotal">
+                    <li class="checkout__listItem">Subtotal</li>
                 </ul>
 
-            
+            </div>
+                <div class="modal__cuenta">
+                    <p class="cuenta__total-text">Total: </p>
+                    <p class="cuenta__total-value" id="cart-value">$ 0</p>
+                </div>
+                <div class="checkout__payments">
+                    <h3>Seleccione forma de pago:</h3>
+                    <form action="">
+                        <div>
+                            <input type="radio" id="payment-cash" name="payment__method" value="cash">
+                            <label for="payment-cash">Contado/Efectivo</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="payment-mp" name="payment__method" value="mercadopago">
+                            <label for="payment-mp">MercadoPago</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="checkout__deliverMethods">
+                    <h3>Seleccione forma de entrega:</h3>
+                    <form class="checkout__deliverForm" action="">
+                        <div>
+                            <input type="radio" id="deliver-takeAway" name="deliver__method" value="cash">
+                            <label for="deliver-takeAway">Retiro personalmente</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="deliver-delivery" name="deliver__method" value="mercadopago">
+                            <label for="deliver-delivery">Envío por cadete</label>
+                        </div>
+                    </form>
+                </div>
+                
         </div>
-        <div class="modal__cuenta">
-            <p class="cuenta__total-text">Total: </p>
-            <p class="cuenta__total-value" id="cart-value">$ 0</p>
+        
+    </div>
+    
+</section>
+        
+    <footer class="main__footer">
+        <div class="footer__container">
+        <div class="footer__contact">
+            <h3 class="footer__contact-title">Contacto:</h3>
+            <p class="footer__contact-text">Aromarte | Tienda Natural</p>
+            <p class="footer__contact-text">www.aromarte.com.ar</p>
+            <p class="footer__contact-text"><a class="footer__contact-anchor" href="mailto:aromarterosario@gmail.com">aromarterosario@gmail.com</a></p>
+            <p class="footer__contact-text"><a class="footer__contact-anchor" href="https://api.whatsapp.com/send?phone=5493416231799">(+54) 3416231799 <i class="fab fa-whatsapp-square wapp-icon"></i></a></p>
+            <p class="footer__contact-text"><a class="footer__contact-anchor" href="https://api.whatsapp.com/send?phone=5493415026968">(+54) 3415026968 <i class="fab fa-whatsapp-square wapp-icon"></i></a></p>
+        </div>
+        <div class="socialLinks">
+            <p>Vistanos en nuestras redes sociales:</p>
+            <ul class="socialLinks__list">
+                <li class="socialLinks__listItem"><a class="socialLinks__link"  href="https://fb.com/aromarteok/"><i class="fab fa-facebook-square"></i></a></li>
+                <li class="socialLinks__listItem"><a class="socialLinks__link" href="https://www.instagram.com/aromarteok/"><i class="fab fa-instagram-square"></i></a></li>
+            </ul>
         </div>
     </div>
-        
-        
-    
+    <p class="footer__copyright">Copyright © 2020 Aromarte | Desarrollado por E-GALARDI SOLUTIONS</p>
+    </footer>
+
 </body>
 </html>

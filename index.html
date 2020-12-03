@@ -16,7 +16,8 @@
      https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
     <script src="js/scripts.js"></script>
 </head>
 <body onload= Init()>
@@ -31,7 +32,7 @@
         <nav>
             <ul class="nav__nav">
                 <li class="nav__listItem">
-                    <a href="#">Principal</a>
+                    <a href="index.html">Principal</a>
                 </li>
                 <li class="nav__listItem">
                     <a href="#">Productos</a>
@@ -40,7 +41,7 @@
                     <a href="#">¿Qué es Zero Waste?</a>
                 </li>
                 <li class="nav__listItem">
-                    <a href="#">¿Quiénes Somos?</a>
+                    <a href="sections/about-us.html">¿Quiénes Somos?</a>
                 </li>
                 <li class="nav__listItem">
                     <a href="#">Contacto</a>
@@ -57,6 +58,9 @@
             <p class="modal__title"> Productos en el carrito:</p>
             <p class="carritoVacio-text">No hay productos en el carrito.</p>
             <div id="encabezadoCarrito" class="modal__titleColumn">
+                <ul class="modal__imageColumn">
+                    <li class="encabezadoCarrito-text"><p> &nbsp; </p></li>
+                </ul>
                 <ul class="modal__descriptionColumn">
                     <li class="encabezadoCarrito-text">Descripción:</li>
                 </ul>
@@ -74,14 +78,13 @@
             <p class="cuenta__total-text">Total: </p>
             <p class="cuenta__total-value" id="cart-value">$ 0</p>
         </div>
+        <div class="modalFooter__buttonContainer">
+            <a class="modalFooter__button" href="#" onclick="ModalClose('cart')">Seguir comprando</a>
+            <a id="goToCheckout-button" class="modalFooter__button" href="sections/cart-checkout.html">Ir a pagar</a>
+        </div>
         <div class='modal__cartClean'>
             <a  href="#" onclick="CartClean()">Vaciar carrito</a>
         </div>
-        <div class="modalFooter__buttonContainer">
-            <a class="modalFooter__button" href="#" onclick="ModalClose('cart')">Seguir comprando</a>
-            <a class="modalFooter__button" href="sections/cart-checkout.html">Ir a pagar</a>
-        </div>
-
         </div>
 
     </section>
@@ -96,36 +99,63 @@
                 <img class="gridImg__img" src="" alt="">
             </div>
             <div class="productModal__gridDescription">
-                <p>Descripción:</p>
+                <p class="gridDescription__title">Descripción:</p>
                 <p class="gridDescription__text">Descripción</p>
             </div>
             <div class="productModal__gridPrice">
                 <p class="gridPrice__price">precio</p>
             </div>
             <div class="productModal__gridCart">
-                <a href="">Agregar al carrito</a>
-                <a href="sections/cart-checkout.html">ir a pagar</a>
-                <div>
-                    <button>+</button>
-                    <p>1</p>
-                    <button>+</button>
+                <div class="gridCart__quantity">
+                    <a id="Product-buttonDown" class="gridCart__quantity-button">-</a>
+                    <p class="gridCart__quantity-text">1</p>
+                    <a id="Product-buttonUp" class="gridCart__quantity-button">+</a>
                 </div>
+                <a class="gridCart__button" href="#"><p id="gridCart__button-hidden"> <i class="fas fa-check-circle shop__cartAdd"></i> Agregado</p> <p id="gridCart__button-visible">Agregar al carrito</p> </a>
+                <a class="gridCart__button" href="sections/cart-checkout.html">Ir a Pagar</a>
             </div>
         </div>
-        <div class="modalFooter__buttonContainer">
-            <a class="modalFooter__button" href="#" onclick="ModalClose('prod')">Seguir comprando</a>
-            <a class="modalFooter__button" href="sections/cart-checkout.html">Ir a pagar</a>
-        </div>
-
         </div>
     </div>
     </section>
     <section class="shop__container">
-        <ul id="shop__list" class="shop__list">
+        <div class="shop__elements">
+            <p class="shop__noElements">No hay elementos para mostrar</p>
+            <ul id="shop__list" class="shop__list">
             
-        </ul>
+            </ul>
+        </div>
+        <div class="shop__filterContainer">
+            <p>Mostrar:</p>
+            <form class="shop__filter" id="shop__filter">
+                <div>
+                    <input type="checkbox" id="filter-all" name="filter" class="input__filter" value="todo" onchange="CheckboxSelect('all')" checked>
+                    <label for="filter-all">Todo</label>
+                </div>
+            </form>
+        </div>
+        
     </section>
-    
+    <footer class="main__footer">
+        <div class="footer__container">
+        <div class="footer__contact">
+            <h3 class="footer__contact-title">Contacto:</h3>
+            <p class="footer__contact-text">Aromarte | Tienda Natural</p>
+            <p class="footer__contact-text">www.aromarte.com.ar</p>
+            <p class="footer__contact-text"><a class="footer__contact-anchor" href="mailto:aromarterosario@gmail.com">aromarterosario@gmail.com</a></p>
+            <p class="footer__contact-text"><a class="footer__contact-anchor" href="https://api.whatsapp.com/send?phone=5493416231799">(+54) 3416231799 <i class="fab fa-whatsapp-square wapp-icon"></i></a></p>
+            <p class="footer__contact-text"><a class="footer__contact-anchor" href="https://api.whatsapp.com/send?phone=5493415026968">(+54) 3415026968 <i class="fab fa-whatsapp-square wapp-icon"></i></a></p>
+        </div>
+        <div class="socialLinks">
+            <p>Vistanos en nuestras redes sociales:</p>
+            <ul class="socialLinks__list">
+                <li class="socialLinks__listItem"><a class="socialLinks__link"  href="https://fb.com/aromarteok/"><i class="fab fa-facebook-square"></i></a></li>
+                <li class="socialLinks__listItem"><a class="socialLinks__link" href="https://www.instagram.com/aromarteok/"><i class="fab fa-instagram-square"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <p class="footer__copyright">Copyright © 2020 Aromarte | Desarrollado por E-GALARDI SOLUTIONS</p>
+    </footer>
 
 
 </body>
