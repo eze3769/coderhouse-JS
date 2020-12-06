@@ -407,8 +407,7 @@ function ProductClick(id){
     $(".productModal__title").text(nombre);
     $(".gridImg__img").attr("src", imageURL);
     $(".gridCart__quantity-text").attr("id",'product-quantity-modal__'+id);
-    $(".gridCart__button").attr('id',"buttonCheck" );
-    $(".gridCart__button").attr('onclick',"CartClick('"+id+"','modal')" );
+    $("#buttonCheck").attr('onclick',"CartClick('"+id+"','modal')" );
     $("#Product-buttonUp").attr("onclick", 'QuantityButton("+","'+id+'","modal")');
     $("#Product-buttonDown").attr("onclick", 'QuantityButton("-","'+id+'","modal")');
     document.querySelector(".gridDescription__text").innerText = descripcion ; //jquery no me respeta los br

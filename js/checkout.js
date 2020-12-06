@@ -2,7 +2,7 @@ function Init(){
 CartLoad()
 TotalCart()
 }
-window.Mercadopago.setPublishableKey("TEST-3a4140a4-b08f-4580-bf7a-4cdffe6dccc4");
+//window.Mercadopago.setPublishableKey("TEST-3a4140a4-b08f-4580-bf7a-4cdffe6dccc4");
               
 function CartLoad(){
     if (JSON.parse(localStorage.getItem('carrito')) !== null){
@@ -56,6 +56,7 @@ function CartLoad(){
         totalList.appendChild(itemTotal);
 
     }
+    $("#checkout__mpRate").hide();
 };
 var total=0;
 function TotalCart(){
@@ -74,3 +75,6 @@ function TotalCart(){
     
 }
 
+function BuyClick(){
+    
+}

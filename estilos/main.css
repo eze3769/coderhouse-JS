@@ -19,7 +19,8 @@ body{
 
 /*  ------ Header -----   */
 header{
-    height: 80px;
+    height: 85px;
+    border-bottom: #7570708e solid 1px;
 }
 header .header__logoImg{
     position: absolute;
@@ -52,7 +53,7 @@ nav .nav__nav{
     display: flex;
     position: absolute;
     right: 10px;
-    top: 35px;
+    top: 45px;
 }
 nav .nav__nav .nav__listItem{
     padding: 10px;
@@ -69,7 +70,7 @@ nav .nav__nav .nav__listItem{
 
 .body__portadaImg{
     width: 100%;
-    top: 80px;
+    top: 85px;
     
 }
 .main__footer{
@@ -630,40 +631,140 @@ padding-right:10px
 /*------------- Checkout --------------*/
 .section__checkout{
     display:flex;
-    padding:40px;
+    padding:60px;
+    
 }
 .checkout__container{
     display:flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    width:100%;
 }
 .checkout__userForm{
-    width:80%;
+    background-color: #c5678d2d;
+    padding:30px 50px;
+    border-radius: 10px;
+    margin:10px;
+    
 }
 .checkout__container .checkout__user{
-    width:40vw;
+    width:45vw;
+    
 }
 .checkout__container .checkout__userForm{
     display:flex;
     flex-direction: column;
-    padding: 40px;
+}
+.checkout__container .checkout__userForm .customer__names{
+    display:Flex;
+    flex-direction: row;
+    padding:10px 0 5px;
+}
+.checkout__container .checkout__userForm .customer__mailPhone{
+    display:Flex;
+    flex-direction: row;
+    padding:10px 0;
+}
+.checkout__container .checkout__userForm .customer__city{
+    display:Flex;
+    flex-direction: row;
+    padding:10px 0;
+}
+.checkout__container .checkout__userForm .customer__address{
+    display:Flex;
+    flex-direction: row;
+    padding:10px 0;
+}
+.checkout__container .checkout__userForm .customer__observations{
+    display:Flex;
+    flex-direction: column;
+    padding:10px 0 30px;
+}
+.checkout__inputColumn{
+    display:flex;
+    flex-direction: column;
+}
+.checkout__label{
+    text-align: center;
+}
+.customer__inputLastName, .customer__inputName, .customer__inputCity, .customer__inputState, .customer__inputZip, .customer__inputAddress, .customer__inputPhone,.customer__inputEmail,.customer__inputObservations{
+    font-size: 16px;
+}
+.customer__inputLastName, .customer__inputName, .customer__inputCity, .customer__inputState{
+    width: 200px;
+    margin: 5px;
+}
+.customer__inputZip{
+    margin: 5px;
+    width: 120px;
+}
+.customer__inputAddress{
+    margin: 5px;
+    width: 280px;
+}
+.customer__inputPhone{
+    margin: 5px;
+    width: 150px;
+}
+.customer__inputEmail{
+    margin: 5px;
+    width: 250px;
+}
+.customer__inputObservations{
+    margin: 5px;
+    width: 410px;
 }
 .checkout-products{
     display:flex;
-    flex-direction: column;
+    flex-direction: column; 
+    width: 100%;   
     
 }
 .checkout-productsLists{
     display:flex;
     flex-direction: row;
+    font-size: 16px;
+    background-color: #c5678d2d;
+    padding:5px 20px;
+    border-radius: 10px;
+    margin-top:10px;
 }
+
 .CheckoutImageProduct{
     width: 50px;
+}
+.checkout__listItem-title{
+    font-weight: bold;
 }
  .checkout__listItem{
     display:flex;
     flex-direction: column;
     padding:20px;
+}
+.checkout__ratesContainer{
+    background-color: #c5678d2d;
+    padding:10px 30px;
+    border-radius: 10px;
+    margin-top:10px;
+}
+.checkout__ratesContainer .checkout_rates{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+   
+}
+.checkout__payments{
+    background-color: #c5678d2d;
+    padding:30px;
+    border-radius: 10px;
+    margin-top:10px; 
+}
+.checkout__deliverMethods{
+    background-color: #c5678d2d;
+    padding:30px;
+    border-radius: 10px;
+    margin-top:10px; 
 }
 .checkout-products .checkout__productsList .checkout__listItem{
     padding: 16px 10px;
@@ -672,6 +773,39 @@ padding-right:10px
     display:flex;
     flex-direction: column;
 }
+.checkout__buttonsContainer{
+    padding: 30px 20px;
+    display:flex;
+    justify-content: space-around;
+}
+.checkout__button{
+    margin:10px;
+    padding: 10px 20px;
+    background-color: #c5678d;
+    color:#ededed;
+    border-radius: 5px;
+    bottom: 5px;
+    left:5px;
+    transition: all 0.4s;
+}
+.checkout__button:hover{
+    background: pink;
+    transform: scale(1.1);
+    color:black;
+    cursor:pointer;
+}
+/*----------- About us ----------------*/
+.section__aboutUs{
+    padding: 40px;
+}
+.section__aboutUs .aboutUs__text{
+    padding:10px;
+    line-height: 160%;
+}
+
+
+
+
 
 /*----------- Admin site ------------*/
 .admin__options{
