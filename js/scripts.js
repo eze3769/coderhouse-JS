@@ -213,6 +213,8 @@ function CartClick(order,place){
 
 function CartCount(){
     if (JSON.parse(localStorage.getItem('carrito')) !== null){
+        $("#goToCheckout-button").show();
+        $("#buttonModal-checkout").show();
         var cantidad = JSON.parse(localStorage.getItem('carrito')).length;
         var productos = 0;
         for(var i=0; i < cantidad; i++){
@@ -222,6 +224,8 @@ function CartCount(){
         return productos;
     }else{
         document.getElementById('cartCount').innerText = '0 Productos';
+        $("#goToCheckout-button").hide();
+        $("#buttonModal-checkout").hide();
     }
 
 }
@@ -311,7 +315,6 @@ function CartProductsCreator(){
     }else{
         document.querySelector('.carritoVacio-text').style.display='block';
         document.getElementById('encabezadoCarrito').style.display='none';
-        $("#goToCheckout-button").hide();
     }
     
 }
