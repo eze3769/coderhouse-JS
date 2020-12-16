@@ -438,6 +438,7 @@ function LoadFilters(){
         var input = document.createElement("input");
         var label = document.createElement("label");
 
+        container.className ="filter__item";
         input.type = "checkbox";
         input.value = category;
         input.id = "filter-"+category;

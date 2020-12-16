@@ -1,6 +1,7 @@
 function Init(){
 CartLoad()
 TotalCart()
+$("#body__alert").hide();
 }
 var firebaseConfig = {
     apiKey: "AIzaSyCAG6jZJoV_Uhb5L_wc4q4c7Ra3BYCq4yk",
@@ -126,11 +127,10 @@ function PaymentSelect(selection){
     return mercadoPagoExtraRate;
 }
 
+
 function BuyClick(){
-    console.log(deliveryCost)
-    console.log(mercadoPagoExtraRate)
-    var name = document.getElementById("customer__lastName").value;
-    var lastName = document.getElementById("customer__name").value;
+    var name = document.getElementById("customer__name").value;
+    var lastName = document.getElementById("customer__lastName").value;
     var email = document.getElementById("customer__email").value;
     var phone = document.getElementById("customer__phone").value;
     var address = document.getElementById("customer__address").value;
@@ -155,7 +155,15 @@ function BuyClick(){
         var deliverMethod = "Cadete";
     }
     if (DataFillCheck(name,lastName,email,phone,address,zipCode,city,state) == false){
-        if (JSON.parse(localStorage.getItem('carrito')) !== null){
+      if(deliverMethod == null || deliverMethod == undefined){
+        $("#deliver-alert").text("Ingrese un método de envío");
+        return;
+        }else{
+        if(payment == null || payment == undefined){
+          $("#payment-alert").text("Ingrese un método de pago");
+          return;
+        }else{
+          if (JSON.parse(localStorage.getItem('carrito')) !== null){
             var db = firebase.database().ref('orders').push();
             db.set({
                 'customer':{
@@ -170,18 +178,20 @@ function BuyClick(){
                     'observations':observations
                 },
                 'products': JSON.parse(localStorage.getItem('carrito')),
-                'order-status': 'pendiente',
+                'orderStatus': 'pendiente',
                 'payment': payment,
-                'extra-rate':mercadoPagoExtraRate,
-                'deliver-method': deliverMethod,
-                'deliver-cost':deliveryCost
-            }).then(window.location.href = "finish.html");
+                'extraRate':mercadoPagoExtraRate,
+                'deliverMethod': deliverMethod,
+                'deliverCost':deliveryCost,
+                'total':TotalCart()
+            })
         }
+        }
+      }
+        
     }
+    $("#body__alert").show();
     
-    
-
-
 }
 function DataFillCheck(name,lastName,email,phone,address,zip,city,state){
     var isNull = false;
@@ -236,4 +246,8 @@ function DataFillCheck(name,lastName,email,phone,address,zip,city,state){
     }
   
     return isNull;    
+}
+function GoHome(){
+  localStorage.removeItem('carrito');
+  window.location.href = "../index.html";
 }

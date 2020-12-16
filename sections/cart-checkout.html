@@ -14,7 +14,7 @@
     https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
-    <script src="../js/checkout.js"></script>
+    <script src="../js/checkout.js" defer></script>
 </head>
 <body onload=Init()>
     <header>
@@ -121,6 +121,7 @@
             </div>
                 <div class="checkout__deliverMethods">
                     <h3>Seleccione forma de entrega:</h3>
+                    <p class="input-null" id="deliver-alert"></p>
                     <form class="checkout__deliverForm" action="">
                         <div>
                             <input onclick="DeliverSelect('takeAway')" type="radio" id="deliver-takeAway" name="deliver__method" value="takeAway">
@@ -138,6 +139,7 @@
                 </div>
                 <div class="checkout__payments">
                     <h3>Seleccione forma de pago:</h3>
+                    <p class="input-null" id="payment-alert"></p>
                     <form action="" id="checkout__paymentForm">
                         <div>
                             <input type="radio" id="payment-cash" onclick="PaymentSelect('cash')" name="payment__method" value="cash">
@@ -154,7 +156,18 @@
     </div>
     
 </section>
-        
+<section id="body__alert" class="body__alert">
+    <div class="alert__container">
+    <div class="modal__headerContainer">
+        <h3 class="alert__title">Aromarte</h3>
+    </div>
+    <div class="alert__messageContainer">
+        <p class="alert__message" id="alert__message">¡Gracias por su compra!</p>
+        <p class="alert__message" id="alert__message">Nos comunicaremos a la brevedad.</p>
+        <a onclick="GoHome()" class="alert__okButton">Ir al inicio</a>
+    </div>
+</div>
+</section>
     <footer class="main__footer">
         <div class="footer__container">
         <div class="footer__contact">

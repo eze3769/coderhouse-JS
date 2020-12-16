@@ -15,7 +15,12 @@ body{
     font-family: 'Roboto', sans-serif;
     font-size: 1.2em;
 }
-
+h1{
+    padding:20px 40px;
+}
+h2{
+    padding:20px 40px;
+}
 
 /*  ------ Header -----   */
 header{
@@ -47,7 +52,6 @@ header .header__cart .cart-icon{
 }
 nav{
     top:0;
-    
 }
 nav .nav__nav{
     display: flex;
@@ -127,7 +131,12 @@ nav .nav__nav .nav__listItem{
     width:75vw;
 }
 .shop__filterContainer{
-display:flex;
+    display:flex;
+    flex-direction: column;
+}
+.shop__filterTitle{
+    padding:5px;
+    font-weight: bold;
 }
 .shop__filterContainer .shop__filterForm{
 padding:5px;
@@ -276,7 +285,8 @@ padding:5px;
     height: 70vh;
     background-color: #ededed;
     border: 2px solid #0e0e0e;
-    overflow-y: scroll;
+    overflow-y: auto;
+    box-shadow: 10px 10px 15px #333232;
 }
 .modal__title{
     padding: 10px;
@@ -347,6 +357,7 @@ padding:5px;
 .modal__closeIcon{
     font-size:20px;
     position: absolute;
+    top:5px;
     right:5px;
     padding:5px;
     transition: all 0.4s;
@@ -369,6 +380,8 @@ padding:5px;
     background-color: #ededed;
     border: 2px solid #0e0e0e;
     overflow: hidden;
+    box-shadow: 10px 10px 15px #333232;
+
 }
  .productModal__grid{
     display:grid;
@@ -572,7 +585,7 @@ padding:5px;
 .section__modifyContainer{
     padding:40px;
     max-height: 500px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .productsModify{
     border:1px solid #333232;
@@ -689,6 +702,7 @@ padding-right:10px
 }
 .customer__inputLastName, .customer__inputName, .customer__inputCity, .customer__inputState, .customer__inputZip, .customer__inputAddress, .customer__inputPhone,.customer__inputEmail,.customer__inputObservations{
     font-size: 16px;
+    font-family: 'Roboto',sans-serif;
 }
 .customer__inputLastName, .customer__inputName, .customer__inputCity, .customer__inputState{
     width: 200px;
@@ -821,7 +835,97 @@ padding-right:10px
     border-radius: 5px;
     font-weight: bold;
 }
+/*------------- Orders Manager ------------*/
+.orders__container{
+    padding: 40px;  
+}
+.orders__ListContainer{
+    display:flex;
+    flex-direction: row;
+    padding: 20px;
+    border:#0e0e0e solid 1px;
+    border-right:#0e0e0e solid 2px;
+    border-bottom:#0e0e0e solid 2px;
+    justify-content: space-between;
+    max-height: 900px;
+    overflow-y: auto;
+}
+.orders__UL{
+    padding: 10px;
+}
+.orders__ListTitle{
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+.orders__listItem{
+    padding:2px 0;
+}
+.orders__detailsModal{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}
+.detailsModal__container{
+    padding:40px;
+    position:fixed;
+    top: 20vh;
+    width: 850px;
+    height: 470px;
+    background-color: #ededed;
+    border: 2px solid #0e0e0e;
+    overflow: hidden;
+    box-shadow: 10px 10px 15px #333232;
+}
+.orders__details{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.fa-search:hover{
+    cursor:pointer;
+}
+.orders__details .orders__detailsColumns{
+    display:flex;
+    flex-direction: column;
+}
+.orders__detailsTitle{
+    padding-right: 3px;
+    font-weight: bold;
+}
+.orders__details .orders__detailsColumns .detailsColumns__divItem{
+    display:flex;
+    flex-direction: row;
+}
+.order__products{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.refresh-button{
+    margin:5px 40px;
+    float:right;
+}
+@media screen and (max-width: 1023px){
+h1{
+    padding:20px;
+}
+h2{
+    padding:20px;
+}
+}
+@media screen and (max-width: 767px){
 
-@media screen and (min-width: 768px){
-
+/*--------------Principal-----------------------*/
+.shop__container{
+    flex-direction: column;
+    align-items: center;
+}
+.shop__container .shop__filterContainer .shop__filter{
+    display:flex;
+    flex-direction: row;
+    align-items: space-between;
+}
+.shop__container .shop__filterContainer .shop__filter .filter__item{
+    padding:5px;
+}
 }
