@@ -21,6 +21,9 @@ h1{
 h2{
     padding:20px 40px;
 }
+h3{
+    padding:10px 40px;
+}
 
 /*  ------ Header -----   */
 header{
@@ -68,6 +71,12 @@ nav .nav__nav .nav__listItem{
     right:0px;
     top:0px;
     padding:5px;
+}
+#navIcon__a{
+    display:none;
+}
+nav .nav__nav .nav__menuIcon--close{
+    display:none;
 }
 /* -------- Principal -------- */
 
@@ -143,7 +152,7 @@ padding:5px;
 }
 .shop__list{
     display: flex;
-    justify-content: space-around;   
+    justify-content: start;   
     flex-wrap:wrap;
 }
 .shop__list-modify{
@@ -175,7 +184,7 @@ padding:5px;
     border-right: 3px solid #b8b3b385;
     border-bottom: 3px solid #b8b3b385;
     width:120px;  
-    height: 180px;
+    height: 215px;
 }
 .shop__listItem:hover{
     border-color:#7a767698;
@@ -362,6 +371,14 @@ padding:5px;
     padding:5px;
     transition: all 0.4s;
 }
+.productModal__closeIcon{
+    font-size:20px;
+    position: absolute;
+    top:5px;
+    right:5px;
+    padding:5px;
+    transition: all 0.4s;  
+}
 .modal__closeIcon:hover{
     cursor:pointer;
     transform: scale(1.08);
@@ -513,7 +530,6 @@ padding:5px;
     bottom: 5px;
     left:5px;
     transition: all 0.4s;
-
 }
 .productCharger__buttonContainer .productCharger__button:hover{
     background: pink;
@@ -598,7 +614,6 @@ padding:5px;
     padding-bottom:20px;
 }
 .categories__container{
-
     display:flex;
     flex-direction: row;
     justify-content: space-between;
@@ -641,6 +656,33 @@ padding-right:10px
     padding-top:5px;
     padding-bottom: 10px;
 }
+/*---------------- Contact------------------*/
+.contact__section{
+    padding: 40px 20px;
+}
+.contact__container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding:10px;
+}
+.contact__contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contact__contact-title{
+    text-align: center;
+}
+.contact__contact-text{
+    padding:10px
+}
+.contact__div{
+    padding:20px;
+}
+
 /*------------- Checkout --------------*/
 .section__checkout{
     display:flex;
@@ -813,17 +855,24 @@ padding-right:10px
     padding: 40px;
 }
 .section__aboutUs .aboutUs__text{
-    padding:10px;
+    padding:10px 0;
     line-height: 160%;
 }
-
-
-
-
 
 /*----------- Admin site ------------*/
 .admin__options{
     padding:40px;
+}
+.adminGoBack{
+    width: 240px;
+    display:block;
+    margin:10px;
+    padding: 5px 10px;
+    background-color: darkgrey;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    
 }
 .admin__taskList .admin__taskItem{
     padding:20px;
@@ -912,10 +961,79 @@ h1{
 h2{
     padding:20px;
 }
+h3{
+    padding:10px 20px;
+}
+.section__aboutUs{
+    padding:10px 20px;
+}
+.orders__container{
+    padding:20px;
+}
+.contact__section{
+    padding:20px;
+}
 }
 @media screen and (max-width: 767px){
+    h1{
+        padding:10px;
+    }
+    h2{
+        padding:10px;
+    }
+    h3{
+        padding:5px 10px;
+    }
+/* -------------NAV -----------------*/
+nav .nav__nav{
+    display: none;
+}
+.nav__menuIcon{
+    color: #0e0e0e;
+    position:absolute;
+    font-size:28px;
+    padding:20px;
+    padding-left:30px;
+    right:0px;
+    top:25px;
+}
+nav .nav__nav .nav__menuIcon--close{
+    display:block;
+    color: #ededed;
+    position:absolute;
+    font-size:28px;
+    padding:20px;
+    padding-left:30px;
+    right:0px;
+    top:60px;
+}
+#menu:target{
+    top: 0;
+    z-index:2;
+    position: fixed;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #1f1f1f;
+    opacity: 0.85;
+    height: 100vh;
+    width: 100vw; 
+}
+.nav__listItem{
+    margin: 20px;
 
+
+}
+.nav__listItem a{
+    color:#ededed;
+    font-size:1.3em;
+    
+}
 /*--------------Principal-----------------------*/
+#navIcon__a{
+    display:block;
+}
 .shop__container{
     flex-direction: column;
     align-items: center;
@@ -927,5 +1045,158 @@ h2{
 }
 .shop__container .shop__filterContainer .shop__filter .filter__item{
     padding:5px;
+}
+.body__productModal{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}
+.productModal__container{
+    top: 0;
+    z-index:2;
+    position: fixed;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #1f1f1f;
+    opacity: 0.90;
+    height: 100vh;
+    width: 100vw; 
+}
+ .productModal__grid{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto auto;
+    grid-template-areas: 
+    "img price "
+    "description description"
+    " cart cart";
+}
+.productModal__gridImg{
+    padding:10px;
+}
+.productModal__gridImg .gridImg__img{
+    width: 150px;
+    padding:3px;
+}
+.productModal__gridDescription{
+    padding:10px;
+    color:#ededed;
+}
+.productModal__title{
+    color:#ededed;
+}
+.productModal__closeIcon{
+    color:#ededed;
+    padding:40px 20px;
+}
+.shop__container{
+    padding-bottom:10px;
+}
+.shop__listItem{
+    padding:5px;
+    width:120px;  
+    height: 235px;
+}
+.shop__footer .shop__cartAdd{
+    padding: 5px 10px;
+}
+.shop__footer .shop__quantityContainer .button-quantity{
+    padding: 2px 5px;
+    height: 26px;
+    width: 16px;
+}
+.shop__footer .shop__quantityContainer .shop__quantity{
+    padding:2px 5px;
+}
+.footer__container{
+    padding:10px 20px;
+    flex-direction: column;
+
+}
+.footer__container .socialLinks{
+padding:20px 10px;
+}
+.modal__container{
+    width: 95vw;
+    height: 70vh;
+    font-size:0.8em;
+}
+.modal__titleColumn{
+    padding:5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.modal__titleColumn .encabezadoCarrito-text{
+    padding:5px;
+    font-weight: bold;
+}
+.body__modal .modal__container .listProduct{
+    padding:8px 5px;
+}
+.body__modal .modal__container .imgProduct{
+    width: 25px;
+    padding:15px 2px;
+}
+/*------------ About Us ----------------*/
+.section__aboutUs{
+    padding:10px;
+}
+/*------------- Admin ------------------*/
+.admin__taskItem{
+    padding:10px;
+}
+/*-------------- Products Manager -------------------*/
+.productManager__container{
+    flex-direction: column;
+}
+.productManager__container .form__productCharger .productCharger__input{
+    width: 100%;
+}
+.productManager__container .form__productCharger .productCharger__text{
+    width: 100%;
+}
+.productManager__container .form__productCharger{
+    width: unset;
+    padding:20px;
+}
+.productCharger__buttonContainer{
+    padding:10px;
+    align-items: center;
+    
+}
+.productCharger__buttonContainer .productCharger__button{
+    padding: 5px 10px;
+    margin:5px;
+}
+.categories__container{
+    flex-direction: column;
+    padding:10px;
+}
+.categoryAdd__button{
+    padding:5px 10px;
+    text-align:center;
+}
+/*---------------- Orders Manager ---------------*/
+.orders__container{
+    padding:10px;
+}
+.orders__ListContainer{
+    padding:5px;
+    font-size: 0.8em;
+    overflow-y: scroll;
+}
+.orders__ListTitle{
+    width: 150px;
+    overflow: hidden;
+
+}
+/*------------- Contact ------------------------*/
+.contact__section{
+    padding: 20px 10px;
+}
+.contact__container{
+    flex-direction: column;
 }
 }

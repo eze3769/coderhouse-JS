@@ -252,6 +252,7 @@ function OpenCart(){
     TotalCart();
     CartClear();
     CartProductsCreator()
+    $('.body__productModal').hide();    
     $('.body__modal').fadeToggle(300);
 }
 function CartProductsCreator(){
@@ -394,6 +395,7 @@ function ModalClose(select){
     }
 };
 function ProductClick(id){
+    $('.body__modal').hide();
     $("#gridCart__button-hidden").hide();
     $('.body__productModal').show();
 

@@ -30,18 +30,17 @@
             <p id="cartCount" class="header__cartCountText">0 Productos</p>
         </div>
         <nav>
-            <ul class="nav__nav">
+            <a id="navIcon__a"href="#menu"><i class="fas fa-bars nav__menuIcon"></i></a>
+            <ul class="nav__nav" id="menu">
+                <li><a class="nav__menuListItem" href="#"><i class="far fa-window-close nav__menuIcon--close"></i></a></li>
                 <li class="nav__listItem">
                     <a href="index.html">Principal</a>
-                </li>
-                <li class="nav__listItem">
-                    <a href="#">Productos</a>
                 </li>
                 <li class="nav__listItem">
                     <a href="sections/about-us.html">¿Quiénes Somos?</a>
                 </li>
                 <li class="nav__listItem">
-                    <a href="#">Contacto</a>
+                    <a href="sections/contact.html">Contacto</a>
                 </li>
             </ul>
         </nav>
@@ -88,7 +87,7 @@
     <section class="body__productModal">
         <div class="productModal__container">
         <div class="modal__headerContainer">
-            <i onclick="ModalClose('prod')" class="fas fa-window-close modal__closeIcon"></i>
+            <i onclick="ModalClose('prod')" class="fas fa-window-close productModal__closeIcon"></i>
             <h3 class="productModal__title">Producto</h3>
         </div>
             <div class="productModal__grid">

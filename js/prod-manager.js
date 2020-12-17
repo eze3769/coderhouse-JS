@@ -35,10 +35,6 @@ function CreateProduct(){
       SaveProduct(name,description,price,category,imageFile);
       document.getElementById("alert__message").innerText="¡Producto creado con éxito!";
       document.getElementById("productsEntry-form").reset();
-      $(".imagePreview").remove();
-      ProductsClear();
-      ProductsLoad();
-      $("#body__alert").show();     
     }
     
 
@@ -57,11 +53,15 @@ function SaveProduct(name,description,price,category,imageFile){
           'category': category.toLowerCase(),
           'imageURL': downloadURL,
           'imageRef': 'imagenes/'+imageName
+      }).then(function(){
+        ProductsClear();
+        ProductsLoad();
+        $(".imagePreview").remove();
       });
       });
     })
-    ProductsClear();
-    ProductsLoad();
+    
+    $("#body__alert").show();     
 }
 function verifyNotNull(name,description,price,category,imageFile){
   var isNull = false;
@@ -287,8 +287,11 @@ function DeleteItem(id){
   storageRef.delete().then(function() {
     // File deleted successfully
     firebase.database().ref("products/"+id).remove();
-    document.getElementById("alert__message").innerText="Producto eliminado con éxito"
+    document.getElementById("alert__message").innerText="Producto eliminado con éxito";
+    ProductsClear();
+    ProductsLoad();
     $("#body__alert").show(); 
+
   }).catch(function(error) {
     // Uh-oh, an error occurred!
   });
@@ -297,7 +300,8 @@ function DeleteItem(id){
     
 };
 function EditItem(id){
-
+  document.getElementById("alert__message").innerText="Función no disponible. Borre el item y creelo de nuevo.";
+  $("#body__alert").show(); 
 };
 function ProductsClear(){
   $('.shop__list-modify li:not(:first)').remove();
