@@ -425,6 +425,9 @@ padding:5px;
     display: flex;
     flex-direction: column;
     grid-area: description;
+    overflow: auto;
+    max-height: 250px;
+    font-size: 0.9em;
 }
 .productModal__gridDescription .gridDescription__title{
     font-weight: bold;
@@ -1068,6 +1071,8 @@ nav .nav__nav .nav__menuIcon--close{
     opacity: 0.90;
     height: 100vh;
     width: 100vw; 
+    font-size: 0.8em;
+
 }
  .productModal__grid{
     grid-template-columns: 1fr 1fr;
@@ -1081,27 +1086,42 @@ nav .nav__nav .nav__menuIcon--close{
     padding:10px;
 }
 .productModal__gridImg .gridImg__img{
-    width: 150px;
+    width: 140px;
     padding:3px;
 }
 .productModal__gridDescription{
     padding:10px;
     color:#ededed;
 }
+.gridDescription__text{
+    max-height: 300px;
+    overflow-y: auto;
+}
 .productModal__title{
     color:#ededed;
 }
-.productModal__closeIcon{
-    color:#ededed;
-    padding:40px 20px;
+.productModal__gridCart .gridCart__button{
+    padding:0px 5px;
+    display:flex;
+    align-items: center;
 }
 .shop__container{
     padding-bottom:10px;
 }
+.productModal__closeIcon{
+    color:#ededed;
+}
+
 .shop__listItem{
     padding:5px;
-    width:120px;  
-    height: 235px;
+    width:140px;  
+    height: 250px;
+}
+.shop__productLabel-title{
+    padding:2px;
+}
+..shop__productLabelContainer{
+    padding:2px;
 }
 .shop__footer .shop__cartAdd{
     padding: 5px 10px;
