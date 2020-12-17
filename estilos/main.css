@@ -691,16 +691,17 @@ padding-right:10px
 }
 .checkout__container{
     display:flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: center;
-    width:100%;
+    width:100vw;
 }
 .checkout__userForm{
+    display:flex;
+    align-items: center;
     background-color: #c5678d2d;
     padding:30px 50px;
     border-radius: 10px;
     margin:10px;
-    
 }
 .checkout__container .checkout__user{
     width:45vw;
@@ -747,28 +748,28 @@ padding-right:10px
     font-family: 'Roboto',sans-serif;
 }
 .customer__inputLastName, .customer__inputName, .customer__inputCity, .customer__inputState{
-    width: 200px;
+    width: 17vw;
     margin: 5px;
 }
 .customer__inputZip{
     margin: 5px;
-    width: 120px;
+    width: 11vw;
 }
 .customer__inputAddress{
     margin: 5px;
-    width: 280px;
+    width: 23vw;
 }
 .customer__inputPhone{
     margin: 5px;
-    width: 150px;
+    width: 14vw;
 }
 .customer__inputEmail{
     margin: 5px;
-    width: 250px;
+    width: 20vw;
 }
 .customer__inputObservations{
     margin: 5px;
-    width: 410px;
+    width: 35vw;
 }
 .checkout-products{
     display:flex;
@@ -830,7 +831,7 @@ padding-right:10px
     flex-direction: column;
 }
 .checkout__buttonsContainer{
-    padding: 30px 20px;
+    padding: 10px 20px;
     display:flex;
     justify-content: space-around;
 }
@@ -972,6 +973,10 @@ h3{
 }
 .contact__section{
     padding:20px;
+}
+.section__checkout{
+    padding:20px;
+    font-size: 0.8em;
 }
 }
 @media screen and (max-width: 767px){
@@ -1197,6 +1202,61 @@ padding:20px 10px;
     padding: 20px 10px;
 }
 .contact__container{
+    flex-direction: column;
+}
+/*-------------- Checkout --------------------------*/
+.section__checkout {
+    padding:10px;
+}
+.checkout__container{
+    flex-direction: column;
+}
+.checkout__container .checkout__user{
+    width: 100%;
+}
+.customer__inputLastName, .customer__inputName, .customer__inputCity, .customer__inputState{
+    width: 78vw;
+    margin-bottom: 20px;
+}
+.customer__inputZip{
+    width: 21vw;
+    margin-bottom: 20px;
+}
+.customer__inputAddress{
+    width: 55vw;
+    margin-bottom: 20px;
+}
+.customer__inputPhone{
+    width: 78vw;
+    margin-bottom: 20px;
+}
+.customer__inputEmail{
+    width: 78vw;
+    margin-bottom: 20px;
+}
+.customer__inputObservations{
+    width: 78vw;
+    margin-bottom: 20px;
+}
+.checkout__container .checkout__userForm{
+    flex-direction: column;
+}
+.checkout__container .checkout__userForm .customer__names{
+    flex-direction: column;
+}
+.checkout__container .checkout__userForm .customer__mailPhone{
+    flex-direction: column;
+}
+.checkout__container .checkout__userForm .customer__city{
+    flex-direction: column;
+}
+.checkout__container .checkout__userForm .customer__address{
+    flex-direction: row;
+}
+.checkout__container .checkout__userForm .customer__observations{
+    flex-direction: column;
+}
+.checkout__inputColumn{
     flex-direction: column;
 }
 }
