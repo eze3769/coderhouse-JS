@@ -1215,7 +1215,29 @@ padding:20px 10px;
 .orders__ListTitle{
     width: 150px;
     overflow: hidden;
-
+}
+.detailsModal__container{
+    width: 95vw;
+    overflow: auto;
+}
+.orders__details{
+    flex-direction: column;
+}
+.order__products{
+    padding-top:10px;
+    font-size: 0.8em;
+}
+#order-productPricePerUnit{
+    min-width: 90px;
+    padding-left: 10px;
+}
+#order-productDescription{
+    min-width: 180px;
+    overflow: hidden;
+}
+.order__products{
+    padding:5px;
+    width: 300px;
 }
 /*------------- Contact ------------------------*/
 .contact__section{
